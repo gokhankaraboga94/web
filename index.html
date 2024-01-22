@@ -19,22 +19,77 @@
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
             border-radius: 5px;
         }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        input {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 10px;
+        }
+
+        button {
+            background-color: #4caf50;
+            color: white;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        #cevap {
+            margin-top: 10px;
+            padding: 10px;
+            background-color: #eee;
+        }
     </style>
     <title>Yapay Zeka Uygulaması</title>
 </head>
 <body>
-    <div id="app"></div>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/pywebview/3.3.6/pywebview.min.js"></script>
+    <div id="app">
+        <h2>Soru Sor</h2>
+        <label for="soru">Sorunuzu yazın:</label>
+        <input type="text" id="soru" placeholder="Sorunuzu girin">
+
+        <button onclick="soruGonder()">Gönder</button>
+
+        <h2>Cevap</h2>
+        <div id="cevap"></div>
+    </div>
+
     <script>
-        pywebview.start({
-            title: "Yapay Zeka Uygulaması",
-            width: 600,
-            height: 600,
-            resizable: false,
-            debug: true,
-            frameless: false,
-            url: "http://localhost:8080/"
-        });
+        function soruGonder() {
+            var soru = document.getElementById("soru").value;
+            var cevapDiv = document.getElementById("cevap");
+
+            // Soru kontrolü
+            if (!soru) {
+                cevapDiv.innerHTML = "Lütfen bir soru girin.";
+                return;
+            }
+
+            // Basit bir web sorgusu ile cevap alınsın
+            // Bu sadece bir örnek, gerçek bir uygulama için bir API kullanılmalıdır
+            var url = "https://www.google.com/search?q=" + encodeURIComponent(soru);
+
+            fetch(url)
+                .then(response => response.text())
+                .then(data => {
+                    // Gelen HTML içerisinden bir cevap alabilirsiniz
+                    // Ancak, gerçek bir uygulama için API kullanmak daha uygundur
+                    cevapDiv.innerHTML = data;
+                })
+                .catch(error => {
+                    cevapDiv.innerHTML = "Cevap alınamadı. Hata: " + error.message;
+                });
+        }
     </script>
 </body>
 </html>
