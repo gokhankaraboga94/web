@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f0f0f0;
+        }
+
+        #app {
+            max-width: 600px;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 5px;
+        }
+    </style>
+    <title>Yapay Zeka Uygulaması</title>
+</head>
+<body>
+    <div id="app"></div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pywebview/3.3.6/pywebview.min.js"></script>
+    <script>
+        pywebview.start({
+            title: "Yapay Zeka Uygulaması",
+            width: 600,
+            height: 600,
+            resizable: false,
+            debug: true,
+            frameless: false,
+            url: "http://localhost:8080/"
+        });
+    </script>
+</body>
+</html>
