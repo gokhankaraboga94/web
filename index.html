@@ -3,92 +3,59 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ürün Fiyat Takip</title>
     <style>
         body {
             font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
             background-color: #f0f0f0;
         }
 
-        #app {
-            max-width: 600px;
-            margin: 50px auto;
+        .container {
+            width: 300px;
+            margin: 0 auto;
             padding: 20px;
             background-color: #fff;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
             border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
         }
 
-        label {
+        input, button {
             display: block;
-            margin-bottom: 5px;
-        }
-
-        input {
             width: 100%;
-            padding: 8px;
             margin-bottom: 10px;
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 3px;
         }
 
         button {
-            background-color: #4caf50;
-            color: white;
-            padding: 10px;
+            background-color: #007bff;
+            color: #fff;
             border: none;
-            border-radius: 5px;
             cursor: pointer;
         }
 
         button:hover {
-            background-color: #45a049;
-        }
-
-        #cevap {
-            margin-top: 10px;
-            padding: 10px;
-            background-color: #eee;
+            background-color: #0056b3;
         }
     </style>
-    <title>Yapay Zeka Uygulaması</title>
 </head>
 <body>
-    <div id="app">
-        <h2>Soru Sor</h2>
-        <label for="soru">Sorunuzu yazın:</label>
-        <input type="text" id="soru" placeholder="Sorunuzu girin">
-
-        <button onclick="soruGonder()">Gönder</button>
-
-        <h2>Cevap</h2>
-        <div id="cevap"></div>
+    <div class="container">
+        <h1>Ürün Fiyat Takip</h1>
+        <input type="text" id="url" placeholder="URL giriniz">
+        <input type="number" id="targetPrice" placeholder="Hedef fiyat giriniz">
+        <input type="email" id="email" placeholder="E-posta adresi giriniz">
+        <button onclick="checkPrice()">Fiyatı Kontrol Et</button>
     </div>
-
     <script>
-        function soruGonder() {
-            var soru = document.getElementById("soru").value;
-            var cevapDiv = document.getElementById("cevap");
+        function checkPrice() {
+            var url = document.getElementById("url").value;
+            var targetPrice = document.getElementById("targetPrice").value;
+            var email = document.getElementById("email").value;
 
-            // Soru kontrolü
-            if (!soru) {
-                cevapDiv.innerHTML = "Lütfen bir soru girin.";
-                return;
-            }
-
-            // Basit bir web sorgusu ile cevap alınsın
-            // Bu sadece bir örnek, gerçek bir uygulama için bir API kullanılmalıdır
-            var url = "https://www.google.com/search?q=" + encodeURIComponent(soru);
-
-            fetch(url)
-                .then(response => response.text())
-                .then(data => {
-                    // Gelen HTML içerisinden bir cevap alabilirsiniz
-                    // Ancak, gerçek bir uygulama için API kullanmak daha uygundur
-                    cevapDiv.innerHTML = data;
-                })
-                .catch(error => {
-                    cevapDiv.innerHTML = "Cevap alınamadı. Hata: " + error.message;
-                });
+            // Fiyat kontrolü ve mail gönderme işlemleri burada yapılacak
+            console.log("Fiyat kontrol ediliyor...");
         }
     </script>
 </body>
